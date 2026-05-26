@@ -1,0 +1,30 @@
+{
+  "name": "laundry",
+  "main": "src/worker.js",
+  "workers_dev": true,
+  "preview_urls": false,
+  "compatibility_date": "2025-12-08",
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": false,
+      "persist": true,
+      "head_sampling_rate": 1
+    }
+  },
+  "vars": {
+    "area": "east",
+    "district": "Hougang",
+    "GOOGLE_CLIENT_ID_PERSONAL": "220410672787-ljli0q9e1kkck1ptp5e6h1trb2s2sa3s.apps.googleusercontent.com",
+    "GOOGLE_CLIENT_ID_WORK": "855943353809-5s6l7rgl9mqmfb031kltq5dncpt0ol6t.apps.googleusercontent.com",
+    "REDIRECT_URI": "https://laundry.tiffanylaw.workers.dev/oauth/callback",
+    "wind_station": "S43"
+  }
+}
