@@ -7,7 +7,7 @@ export async function askOpenAI(prompt, env) {
         { role: "user", parts: [{ text: prompt }] }
       ],
       generationConfig: {
-        maxOutputTokens: 200
+        maxOutputTokens: 500
       }
     };
 
