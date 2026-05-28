@@ -63,7 +63,7 @@ export default {
       const prompt = laundryPrompt(weatherData, calendarText);
       const recommendation = await askOpenAI(prompt, env);
 
-      return json({ result: recommendation });
+      return json(JSON.parse(recommendation));
     }
 
     return new Response("Worker is running", { status: 200 });
