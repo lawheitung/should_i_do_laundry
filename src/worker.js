@@ -26,7 +26,7 @@ export default {
 
     if (url.pathname === "/debug-env") {
       return new Response(
-        `KEY: ${env.CHATGPT_API_KEY ? "Loaded" : "Missing"}`
+        `KEY: ${env.GEMINI_API_KEY ? "Loaded" : "Missing"}`
       );
     }
 

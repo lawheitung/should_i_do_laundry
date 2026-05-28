@@ -1,26 +1,29 @@
 export async function askOpenAI(prompt, env) {
     const body = {
-      model: "gpt-4.1-mini",
-      messages: [
-        { role: "system", content: "You are a concise assistant." },
-        { role: "user", content: prompt }
-      ],
-      max_tokens: 400
-    };
-  
-    const res = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${env.CHATGPT_API_KEY}`,
-        "Content-Type": "application/json"
+      systemInstruction: {
+        parts: [{ text: "You are a concise assistant." }]
       },
-      body: JSON.stringify(body)
-    });
-  
+      contents: [
+        { role: "user", parts: [{ text: prompt }] }
+      ],
+      generationConfig: {
+        maxOutputTokens: 400
+      }
+    };
+
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${env.GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      }
+    );
+
     if (!res.ok) throw new Error(await res.text());
-  
+
     const data = await res.json();
-    return data.choices[0].message.content;
+    return data.candidates[0].content.parts[0].text;
   }
   
 
