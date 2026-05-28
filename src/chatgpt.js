@@ -7,7 +7,7 @@ export async function askOpenAI(prompt, env) {
         { role: "user", parts: [{ text: prompt }] }
       ],
       generationConfig: {
-        maxOutputTokens: 400
+        maxOutputTokens: 200
       }
     };
 
@@ -79,7 +79,7 @@ export async function askOpenAI(prompt, env) {
 
   Your job:
   - Decide when laundry should be done and estimate drying time (when to move indoors, next best laundry time) based on user's schedule.
-    
+
   Guidelines:
   - Avoid drying outdoors if rain, drizzle, thundery showers, or hazy conditions are expected.
   - Higher wind speed and UV help drying; low UV or no sun reduces drying speed.
@@ -87,6 +87,14 @@ export async function askOpenAI(prompt, env) {
   - If rain is possible during the drying time, recommend after how many hours/minutes to move laundry indoors (target: 75% drying outdoors)
   - Consider user's calendar to suggest feasible timing.
   - Explain reasoning briefly
+
+  You MUST respond with ONLY valid JSON in this exact format, no markdown, no extra text:
+  {
+    "best_time": "Now" or a specific day and time e.g. "Saturday 9am",
+    "move_indoors_by": "time to move laundry indoors, or null if no rain risk",
+    "next_best_time": "next best day and time if best_time is missed",
+    "reasoning": "one short sentence"
+  }
 
   `;
   }
