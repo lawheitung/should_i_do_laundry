@@ -23,7 +23,8 @@ export async function askOpenAI(prompt, env) {
     if (!res.ok) throw new Error(await res.text());
 
     const data = await res.json();
-    return data.candidates[0].content.parts[0].text;
+    const text = data.candidates[0].content.parts[0].text;
+    return text.replace(/^```json\s*/, "").replace(/```\s*$/, "").trim();
   }
   
 
